@@ -1,0 +1,144 @@
+import java.util.*;
+
+/*
+ * Author: Rea Ahuja
+ * Date: November 19th 2021
+ * Description: This method creates a stack with the integers entered by the user and performs various methods 
+ * with the elements in the stack
+ */
+
+//This class is the stack class where the stack is created and interacted with
+class Stack3{
+ 
+ int []data;
+ int top;
+ 
+ //constructor
+ public Stack3(int maxItems){
+  data = new int[maxItems];
+  top=-1;
+ }
+ 
+ //removes the element from the top
+ public int pop(){
+  top = top -1;
+  return data[top+1];
+ }
+ 
+ //adds one element on the top
+ public void push(int item){
+  if(top <= data.length-1){
+   top = top +1;
+   data[top]=item;
+  }else{
+	  System.out.println("Stack is full");
+  }
+ }
+ 
+ //returns the value of the item on first index
+ public int top(){
+  return data[top];
+ }
+ 
+ //returns true if the stack is empty and false otherwise
+ public boolean isEmpty(){
+  if (top==-1){
+   return true;
+  }
+  else return false;
+  
+ }
+ 
+ //returns the size of the stack
+ public int size(){
+  if (isEmpty()){
+   return 0;
+  }
+  else {
+   return top+1;
+  }
+ }
+ 
+ //empties the stack by making top = -1.
+ public void makeEmpty()
+ {
+ 	 top=-1;
+ }
+ 
+ /* This method calculates the sum of the positive numbers at the top of the stack and the value of the sum is 
+  * returned 
+  */
+ public int sum(){
+	int sum = 0;
+	while (isEmpty() != true){
+		if (top() > 0){
+			sum += top();
+			pop();
+		}else{
+			//if a negative number if found method is broke and value is returned
+			return sum;
+		}
+	}
+	// if no negative values are found, sum is returned after program goes through all values
+	return sum;
+ }
+ 
+ /*
+  * This method returns the value of the sum and the number of elements left (below the last positive element at the top before
+  * a negative number if found)
+  */
+ public void displaySum(){
+	 System.out.println("The sum is: " + sum());
+	 System.out.println("Number of elements left: " + size());
+ }
+ 
+ /* 
+  * This method returns and tells the user the number of negative numbers in the stack. Additionally, this is the 
+  * special feature. 
+  */
+ public String negativesLeft(){
+	 int counter = 0;
+	 
+	 while (isEmpty() != true){
+		 if (top() < 0){
+			 counter++;
+			 pop();
+			 // if the top value is negative, the value of counter is increased
+		 }else{
+			 pop();
+		 }
+	 }
+	 //value of counter and string with what counter represents is returned
+	 return "The number of negative numbers are: " + counter;
+ }
+}
+
+/*
+ * This is the driver code, it directs the program and the user
+ */
+public class Stackclass {
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+		
+		int counter = 0;
+		
+		//a stack with 10 elements is created
+		Stack3 stack = new Stack3(10);
+		
+		while (counter < 10){
+			//user fills stack with values
+			System.out.println("Enter a number: ");
+			int number = input.nextInt();
+			stack.push(number);
+			counter++;
+		}
+		//the sum of the top positive values are displayed
+		stack.displaySum();
+		//the number of negative numbers in the stack are displayed
+		System.out.println(stack.negativesLeft());
+		
+		
+		
+		
+	}
+}
