@@ -1,0 +1,123 @@
+
+5.4 Data Structure Practice
+Corina Banica
+•
+Nov 16, 2021 (Edited Nov 17, 2021)
+100 points
+
+Data Structures Practice.docx
+Word
+Class comments
+Add a class comment
+Your work
+Handed in
+Estigfend
+
+reverseList.java
+Java
+
+ParenChecker.java
+Java
+
+ParenChecker.java
+Java
+
+Stats.java
+Java
+
+Data Structure Practice
+Google Docs
+Unsubmit
+Private comments
+Add comment to Corina Banica
+5.4 Data Structure Practice
+import java.util.*;
+
+class Stack1{
+	 
+	 int []data;
+	 int top;
+	 
+	 //constructor
+	 public Stack1(int maxItems){
+	  data = new int[maxItems];
+	  top=-1;
+	 }
+	 
+	 //removes the element from the top
+	 public int pop(){
+	  top = top -1;
+	  return data[top+1];
+	  
+	 }
+	 
+	 //adds one element on the top
+	 public void push(int item){
+	  if(top <= data.length-1){
+	   top = top +1;
+	   data[top]=item;
+	  }else{
+		  System.out.println("Stack is full");
+	  }
+	 }
+	 
+	 //returns the value of the item on first index
+	 public int top(){
+	  return data[top];
+	 }
+	 
+	 //returns true if the stack is empty and false otherwise
+	 public boolean isEmpty(){
+	  if (top==-1){
+	   return true;
+	  }
+	  else return false;
+	  
+	 }
+	 
+	 //returns the size of the stack
+	 public int size(){
+	  if (isEmpty()){
+	   return 0;
+	  }
+	  else {
+	   return top+1;
+	  }
+	 }
+	 
+	 //empties the stack by making top = -1.
+	 public void makeEmpty()
+	 {
+	 	 top=-1;
+	 }
+	}
+
+public class reverseList {
+	public static void main (String[] args){
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter a minimum of 10 numbers");
+		System.out.println("Enter a number (999 to quit): ");
+		int number = input.nextInt();
+		
+		Stack1 numberList = new Stack1(10);
+		int counter = 0;
+		
+		numberList.push(number);
+		
+		while (number != 999 && counter < (10 - 1)){
+			System.out.println("Enter a number (999 to quit): ");
+			number = input.nextInt();
+			numberList.push(number);
+			counter++;
+		}
+		
+		//4 - counter = 3
+		System.out.println("The list reversed: ");
+		numberList.pop(); //get rid of the 999
+		for (int i = counter; i > 0; i--){
+			System.out.print(numberList.top() + " ");
+			numberList.pop();
+		}
+		
+	}
+}
