@@ -1,0 +1,208 @@
+import java.util.*;
+/*
+ * Author: Rea Ahuja
+ * Date: November 19th 2021
+ * Description: This method creates a link list and 
+ */
+
+//The linked list class has many methods which help the user interact with the linked list
+class LinkedList {
+	 private Node head;
+	  
+	//constructor 
+	public LinkedList() {
+	 head = null;
+	}
+	
+	//this method allows the user to add nodes to the front of the link list
+	public void addAtFront(String str, int number) {
+	 Node newNode = new Node(str, number);
+	 newNode.setNext(head);
+	 head = newNode;
+	}
+	
+	///this method deletes a node from the list
+	public void remove(String str) {
+	 Node current = head;
+	 Node previous = head;
+	 
+	 if (current.getData().equals(str)) {
+	  head = current.getNext();
+	 } else {
+	  while (current.getNext() != null) {
+	   previous = current;
+	   current = current.getNext();
+	   if (current.getData().equals(str)) {
+	    previous.setNext(current.getNext());
+	 }
+	}
+	}
+	}
+	
+	//this method creates a string of all values in each of the nodes and displays it to the user
+	public String toString() {
+	 Node current = head;
+	 String listString;
+	 
+	 if (current != null) {
+	  listString = current.getData() + "\n";
+	  while (current.getNext() != null) {
+	   current = current.getNext();
+	   listString += current.getData() + "\n";
+	  }
+	  return(listString);
+	  //if the current is null, thereby the head, that means that there are no items in the list
+	 } else {
+	  return("There are no items in list.");
+	  }
+	 }
+	
+	//this method asks the user to enter the name of the country and the population of the country
+	public void addValues(){
+		Scanner input = new Scanner(System.in);
+		int counter = 0;
+		
+		//the user is asked to enter the name and population of 6 countries
+		while (counter < 6){
+			System.out.println("Enter the name of a country: ");
+			String country = input.next();
+			
+			System.out.println("Enter the population of the country: ");
+			int population = input.nextInt();
+			
+			//the entered values are send to the valuestoNode method to be stored as Nodes
+			valuestoNode(country, population);
+			counter++;
+		}
+		
+		
+	}
+	
+	/*this method creates nodes for the country and population entered by the user. This nodes stores both the 
+	 * country name and the population of the country
+	 */
+	public void valuestoNode(String country, int population){
+		addAtFront(country, population);
+	}
+	
+	//this method returns the name of the country that has the most amount of characters 
+	public String countryLongestName(){
+		Node current = head;
+		String longestName = current.getData();
+		String chars = current.getData();
+		int charsLength = chars.length();
+		
+		//the number of characters in the node of the list are compared to all the other nodes
+		/*if one of the nodes has a country with less characters than the number of characters in the country of the head
+		 * then the value of longestName is reset
+		 */
+		while (current.getNext() != null){
+			String charNext = current.getNext().getData();
+			int charsNextLength = charNext.length();
+			if (charsNextLength > charsLength){
+				longestName = charNext;
+			}
+			current = current.getNext();
+		}
+		//the number of characters in the country with the longest name is returned
+		System.out.println(charactersCountry(longestName));
+		//the value of longestName is returned
+		return "The country with the longest name is: " +  longestName;
+		
+	}
+	
+	// This method returns the name of the country that has the smallest population
+	public String countryPopulation(){
+		Node current = head;
+		int leastPopulation = current.getPopulation();
+		String country = "";
+		/*
+		 * The population of the nodes  is compared with the population of the countries in the rest of the nodes.
+		 * The name of the country that has the smallest value of population is set to country. The population is printed
+		 * through the populationOfLeast method and the name of the country is printed in this method.
+		 */
+		while (current.getNext() != null){
+			int nextPopulation = current.getNext().getPopulation();
+			if (nextPopulation < leastPopulation){
+				leastPopulation = nextPopulation;
+				country = current.getNext().getData();
+			}
+			current = current.getNext();
+		}
+		
+		populationOfLeast(leastPopulation);
+		if (country.equals("")){
+			return "All countries have the same population";
+		}else{
+			return "Country with least population " + country;
+		}
+		
+	}
+	/*
+	 * Method prints the population of the country with the least population
+	 */
+	public String populationOfLeast(int leastPopulation){
+		return "The least population is: " + leastPopulation;
+	}
+	
+	
+	//This method returns the number of characters in the country with the longest name
+	public String charactersCountry(String longestCountry){
+		int length = longestCountry.length();
+		System.out.println("");
+		return "The number of characters in " + longestCountry + " is "  + length;
+	}
+	
+	
+	}
+
+//This class is the node class where the nodes and variables that the linked list class interacts with are controlled
+	class Node {
+	 public String country;
+	 public int population;
+	 public Node next;
+	 
+	 //this is constructor where the node is created
+	 public Node(String newData, int newIntdata) {
+	  country = newData;
+	  population = newIntdata;
+	  next = null;
+	 }
+	 //the node has been returned
+	 public Node getNext() {
+	  return(next);
+	 }
+	 //makes next point to newNode
+	 public void setNext(Node newNode) {
+	  next = newNode;
+	 }
+	 //node has been returned
+	 public String getData() {
+	 	 return(country);
+	  }
+	 //node has been returned
+	 public int getPopulation(){
+		 return population;
+	 }
+	  }
+	
+	//This is the driver code
+public class LinkedListclass {
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+		
+		LinkedList list = new LinkedList();
+		
+		//user adds values (nodes) to the link lists
+		list.addValues();
+		
+		//country with the longest name is returned
+		System.out.println(list.countryLongestName());
+		
+		//country with the greatest population is returned
+		System.out.println(list.countryPopulation());
+		
+		
+		
+	}
+}
