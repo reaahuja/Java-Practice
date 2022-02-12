@@ -1,0 +1,154 @@
+import java.util.*;
+
+interface functions{
+	public int sum();
+	public int max();
+	public int min();
+}
+
+class LinkedList1 implements functions{
+	 private Node1 head;
+	  
+	public LinkedList1() {
+	 head = null;
+	}
+	
+	public void addAtFront(int str) {
+	 Node1 newNode = new Node1(str);
+	 newNode.setNext(head);
+	 head = newNode;
+	}
+	
+	public void remove(int str) {
+	 Node1 current = head;
+	 Node1 previous = head;
+	 
+	 if (current.getData() == str) {
+	  head = current.getNext();
+	 } else {
+	  while (current.getNext() != null) {
+	   previous = current;
+	   current = current.getNext();
+	   if (current.getData() == str) {
+	    previous.setNext(current.getNext());
+	 }
+	}
+	}
+	}
+
+	public String toString() {
+		 Node1 current = head;
+		 String listString;
+		 
+		 if (current != null) {
+		  listString = current.getData() + "\n";
+		  while (current.getNext() != null) {
+		   current = current.getNext();
+		   listString += current.getData() + "\n";
+		  }
+		  return(listString);
+		 } else {
+		  return("There are no items in list.");
+		  }
+		 }
+		
+
+public int sum() {
+	 Node1 current = head;
+	 int listSum = 0;
+	 
+	 if (current != null) {
+	  listSum += current.getData();
+	  while (current.getNext() != null) {
+	   current = current.getNext();
+	   listSum += current.getData();
+	  }
+	  return(listSum);
+	 } else {
+	  return 0;
+	  }
+	 }
+
+public int max() {
+	 Node1 current = head;
+	 int listMax = 0;
+	 
+	 if (current != null){
+		 listMax = current.getData();
+		 while (current.getNext() != null){
+			 current = current.getNext();
+			 if (current.getData() > listMax){
+				 listMax = current.getData();
+			 }
+		 }
+		 
+		 return listMax;
+	 }else{
+		 return 0;
+	 } 
+	}
+
+
+public int min() {
+	 Node1 current = head;
+	 int listMin = 0;
+	 
+	 if (current != null){
+		 listMin = current.getData();
+		 while (current.getNext() != null){
+			 current = current.getNext();
+			 if (current.getData() < listMin){
+				 listMin = current.getData();
+			 }
+		 }
+		 
+		 return listMin;
+	 }else{
+		 return 0;
+	 } 
+	}
+
+	}
+
+class Node1 {
+	 public int data;
+	 public Node1 next;
+	
+	 public Node1(int newData) {
+	  data = newData;
+	  next = null;
+	 }
+	
+	 public Node1 getNext() {
+	  return(next);
+	 }
+	
+	 public void setNext(Node1 newNode) {
+	  next = newNode;
+	 }
+	
+	 public int getData() {
+	 	 return(data);
+	  }
+	  }
+
+
+public class Stats{
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+		
+		LinkedList1 list = new LinkedList1();
+		
+		list.addAtFront(5);
+		list.addAtFront(10);
+		
+		System.out.println("The sum is: " + list.sum());
+		System.out.println("The max is: " + list.max());
+		System.out.println("The min is: " + list.min());
+	
+		
+		
+		
+		
+	}
+}
