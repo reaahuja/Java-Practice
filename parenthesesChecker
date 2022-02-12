@@ -1,0 +1,125 @@
+import java.util.*;
+
+class Stack3{
+	 
+	 int []data;
+	 int top;
+	 
+	 //constructor
+	 public Stack3(int maxItems){
+	  data = new int[maxItems];
+	  top=-1;
+	 }
+	 
+	 //removes the element from the top
+	 public int pop(){
+	  top = top -1;
+	  return data[top+1];
+	  
+	 }
+	 
+	 //adds one element on the top
+	 public void push(int item){
+	  if(top <= data.length-1){
+	   top = top +1;
+	   data[top]=item;
+	  }else{
+		  System.out.println("Stack is full");
+	  }
+	 }
+	 
+	 //returns the value of the item on first index
+	 public int top(){
+	  return data[top];
+	 }
+	 
+	 //returns true if the stack is empty and false otherwise
+	 public boolean isEmpty(){
+	  if (top==-1){
+	   return true;
+	  }
+	  else return false;
+	  
+	 }
+	 
+	 //returns the size of the stack
+	 public int size(){
+	  if (isEmpty()){
+	   return 0;
+	  }
+	  else {
+	   return top+1;
+	  }
+	 }
+	 
+	 //empties the stack by making top = -1.
+	 public void makeEmpty()
+	 {
+	 	 top=-1;
+	 }
+	}
+
+
+public class ParenChecker {
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Enter an expression: ");
+		String expression = input.next();
+		
+		int expressionLength = expression.length();
+		int leftParenCounter = 0;
+		int rightParenCounter = 0;
+		int i = 0;
+		Stack3 leftParen = new Stack3(expressionLength -1);
+		Stack3 rightParen = new Stack3(expressionLength -1 );
+		
+		while ( i < expressionLength){
+			if (expression.substring(i, i +1).equals("(")){
+				leftParen.push(i);
+			}else if (expression.substring(i, i +1).equals(")")){
+				rightParen.push(i);
+			}
+			i++;
+			
+			
+		}
+		
+		
+		int[] rightValues = new int[rightParen.size()];
+		
+		for (int j = 0; j < rightParen.size() + 1; j++){
+			rightValues[j] = rightParen.top();
+			rightParen.pop();
+		}
+		// 3 2
+		int counter = rightValues.length -1;
+		
+		while (leftParen.size() > 0){
+			System.out.println("Pair: ");
+			System.out.print(leftParen.top() + " ");
+			
+			if (counter >= 0){
+				System.out.print(rightValues[counter]);
+				counter--;
+			}
+			
+			System.out.println("");
+			if (leftParen.isEmpty() == false){
+				leftParen.pop();
+			}else{
+				System.out.println("Error has occured, stack is empty so item cannot be popped");
+			}
+			
+		}
+		
+		if (leftParen.size() > 0){
+			System.out.println("Stack has not been emptied");
+		}
+		
+		
+
+		
+		
+	}
+}
