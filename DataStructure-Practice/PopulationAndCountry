@@ -1,9 +1,4 @@
 import java.util.*;
-/*
- * Author: Rea Ahuja
- * Date: November 19th 2021
- * Description: This method creates a link list and 
- */
 
 //The linked list class has many methods which help the user interact with the linked list
 class LinkedList {
