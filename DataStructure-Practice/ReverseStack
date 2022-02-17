@@ -1,36 +1,3 @@
-
-5.4 Data Structure Practice
-Corina Banica
-•
-Nov 16, 2021 (Edited Nov 17, 2021)
-100 points
-
-Data Structures Practice.docx
-Word
-Class comments
-Add a class comment
-Your work
-Handed in
-Estigfend
-
-reverseList.java
-Java
-
-ParenChecker.java
-Java
-
-ParenChecker.java
-Java
-
-Stats.java
-Java
-
-Data Structure Practice
-Google Docs
-Unsubmit
-Private comments
-Add comment to Corina Banica
-5.4 Data Structure Practice
 import java.util.*;
 
 class Stack1{
