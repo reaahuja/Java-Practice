@@ -1,0 +1,96 @@
+import java.util.Scanner;
+
+class Stack{
+
+    int []data;
+    int top;
+
+    public Stack(int maxItems){
+        data = new int[maxItems];
+        top=-1;
+    }
+
+    public int pop(){
+        top = top -1;
+        return data[top+1];
+
+    }
+
+    public void push(int item){
+        if(top <= data.length-1){
+            top = top +1;
+            data[top]=item;
+        }
+    }
+
+    public int top(){
+        return data[top];
+    }
+
+    public boolean isEmpty(){
+        if (top==-1){
+            return true;
+        }
+        else return false;
+
+    }
+
+    public int size(){
+        if (isEmpty()){
+            return 0;
+        }
+        else {
+            return top+1;
+        }
+    }
+
+    public void makeEmpty()
+    {
+        top=-1;
+    }
+}
+
+public class StackCode {
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Stack data = new Stack(10);
+        int elem;
+
+        int[] array = {1, 2, 3, 4, 5};
+
+        data.push(5);
+        data.push(4);
+        data.push(3);
+        data.push(2);
+        data.push(1);
+
+        int middle = (array.length - 1)/2;
+
+        Stack arrayData = new Stack(10);
+
+        int counter = 0;
+
+        int size = data.size();
+
+        while (counter < size){
+            if (counter == middle){
+                data.pop();
+                counter++;
+            }else{
+                arrayData.push(data.top());
+                data.pop();
+                counter++;
+            }
+        }
+
+        while (arrayData.isEmpty() != true){
+            System.out.println(arrayData.top());
+            arrayData.pop();
+        }
+
+        System.out.println("Top of the stack is " + data.top());
+        System.out.println("Items in the stack " + data.size());
+
+
+    }
+}
