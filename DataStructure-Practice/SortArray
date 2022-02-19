@@ -1,0 +1,96 @@
+import java.util.Scanner;
+
+class Stack{
+
+    int []data;
+    int top;
+
+    public Stack(int maxItems){
+        data = new int[maxItems];
+        top=-1;
+    }
+
+    public int pop(){
+        top = top -1;
+        return data[top+1];
+
+    }
+
+    public void push(int item){
+        if(top <= data.length-1){
+            top = top +1;
+            data[top]=item;
+        }
+    }
+
+    public int top(){
+        return data[top];
+    }
+
+    public boolean isEmpty(){
+        if (top==-1){
+            return true;
+        }
+        else return false;
+
+    }
+
+    public int size(){
+        if (isEmpty()){
+            return 0;
+        }
+        else {
+            return top+1;
+        }
+    }
+
+    public void makeEmpty()
+    {
+        top=-1;
+    }
+}
+
+public class StackCode {
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Stack data = new Stack(10);
+
+        //create array, send values, if an element is greater than the rest, then send to stack, else send greatest one
+
+        int[] array = {8, 5, 6, 9};
+
+
+
+
+
+        for (int i = 0; i< array.length; i++){
+            for (int j = i + 1; j<array.length; j++){
+                if (array[i] > array[j]){
+                }else{
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+
+        }
+
+        for (int k = 0; k < array.length; k++){
+            data.push(array[k]);
+        }
+
+
+
+        while (data.isEmpty() != true){
+            System.out.println(data.top());
+            data.pop();
+        }
+
+
+        System.out.println("Top of the stack is " + data.top());
+        System.out.println("Items in the stack " + data.size());
+
+
+    }
+}
+
