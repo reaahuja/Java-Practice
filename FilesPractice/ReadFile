@@ -1,0 +1,166 @@
+/*
+*Author: Rea Ahuja
+*Date: December 1st 2021
+*Description: This program reads information from a file and displays certain information to the user
+depending on their choice
+ */
+
+//The readingFile class contains the main method, which directs the user and program
+import java.util.*;
+import java.io.*;
+public class ICS4U_FilesCode_ReadingFile_AhujaR {
+    /*
+    Pre: N/A
+    What it does: User and program is directed, and file is read.
+    Post: N/A
+     */
+    public static void main(String[] args) {
+        //Object that resembles a file is created
+        File sentenceFile = new File("C:\\Users\\reaah\\Documents\\contentsFile.txt");
+        //input file stream is created
+        FileReader in;
+        //buffered input stream is created
+        BufferedReader readFile;
+        //variable that will store the sentence is created
+        String sentence;
+        //array that will store elements is created
+        String[] array = new String[3];
+        String returnElement;
+        //2D array that will store numbers is created
+        int[][] array2D = new int[2][2];
+
+        //program checks if file exists
+        if (sentenceFile.exists()){
+            System.out.println("The file exists");
+        }else{
+            //if the file does not exist a new one is created
+            //if file cannot be created error messages are displayed to user
+            try{
+                sentenceFile.createNewFile();
+                System.out.println("New file created");
+            }catch (IOException e){
+                System.out.println("File could not be created");
+                System.err.println("IOException: "+ e.getMessage());
+            }
+        }
+
+        try{
+            in = new FileReader(sentenceFile);
+            readFile = new BufferedReader(in);
+            String firstValue;
+
+            //variable sentence stores first line which is the sentence
+            sentence = readFile.readLine();
+
+            /*the next lines in the file are the words for the array, thereby the array stores
+            the words.
+             */
+            for (int i = 0; i<array.length; i++){
+                array[i] = readFile.readLine();
+            }
+
+
+            //while the program does not reach null, the values for array2D will be filled
+            while ((firstValue = readFile.readLine()) != null){
+                for (int i = 0; i < array2D.length; i++){
+                    for (int j = 0; j < array2D[0].length; j++){
+                        /*if the program has encountered the first number that will be stored in the array
+                        it will enter the following conditional statement
+                         */
+                        if (i == 0 && j == 0){
+                            //Integer.parseInt(firstValue) returns firstValue as an integer
+                            int valueInt = Integer.parseInt(firstValue);
+                            //value is stored in array
+                            array2D[i][j] = valueInt;
+                        }else{
+                            returnElement = readFile.readLine();
+                            //Integer.parseInt(returnElement) returns returnElement as an integer
+                            int k = Integer.parseInt(returnElement);
+                            //value is stored in array
+                            array2D[i][j] = k;
+                        }
+                    }
+                }
+            }
+            //menu method is called on
+            menu(sentence, array, array2D);
+
+            //streams are closed
+            readFile.close();
+            in.close();
+        }catch( FileNotFoundException e){
+            /*If file could not be found, program will enter this conditional statement and display
+             the following messages
+             */
+            System.out.println("File not found");
+        }catch(IOException e){
+            /*If there is an input/output operation error program will enter this conditional statement and
+            display the following message
+             */
+            System.out.println("Problem reading file");
+        }
+
+    }
+
+    /*
+    Pre: This method takes the sentence, array and 2D array as parameters
+    What it does: It asks the user which piece of information they would like to see, and displays
+    the corresponding information to the user
+    Post: N/A
+     */
+    public static void menu(String sentence, String[] array, int[][] array2D){
+        Scanner input = new Scanner(System.in);
+        //user is asked which piece of information they would like to see
+        System.out.println("Would you like to see the sentence (1), array (2), 2D array (3) or exit (4)");
+        System.out.println("Enter a value: ");
+        int option = input.nextInt();
+
+        //while user does not want to exit the loop will continue
+        while (option != 4){
+            /*if user chooses the numeric option for sentence the program will enter the following conditional
+            statement and display the sentence to the user
+             */
+            if (option == 1){
+                System.out.println(sentence);
+                System.out.println("\nSentence has been displayed\n");
+
+            /*if user chooses the numeric option for array the program will enter the following conditional
+            statement and display the array to the user
+             */
+            }else if (option == 2){
+                for (int i = 0; i < array.length; i++){
+                    System.out.print(array[i] + " ");
+                }
+                System.out.println("");
+                System.out.println("\nArray has been displayed\n");
+
+            /*if user chooses the numeric option for 2D array the program will enter the following conditional
+            statement and display the 2D array to the user
+             */
+            }else if (option == 3){
+                for (int i = 0; i< array2D.length; i++){
+                    for (int j = 0; j < array2D[0].length; j++){
+                        System.out.print(" " + array2D[i][j] + " ");
+                    }
+                    System.out.println("");
+                }
+                System.out.println("\n2D array has been displayed\n");
+
+            /*if the user inputs any other value, they have done an incorrect input. As a result, they are
+            simply notified that they have inputted an incorrect choice.
+             */
+            }else{
+                System.out.println("Incorrect input!\n");
+            }
+            //User is presented with the menu and is asked to enter a value again
+            System.out.println("Would you like to see the sentence (1), array (2), 2D array (3) or exit (4)");
+            System.out.println("Enter a value: ");
+            option = input.nextInt();
+        }
+        /*once user chooses to exit the while loop by entering the numeric value to exit, they are told that
+        the program comes to an end
+         */
+        System.out.println("Program ends");
+
+    }
+}
