@@ -1,0 +1,204 @@
+/*
+* Author: Rea Ahuja
+* Date: December 1st 2021
+* Description: This program creates 4 objects of the Student class and writes them to a file named studentsFile.
+* Additionally, aside from writing, the program also reads the objects in the file and displays it to the user.
+ */
+import java.util.*;
+import java.io.*;
+
+/*Students is a class that implements the Serializable interface and it has a method which can return a string with
+the information of the students name, age and average.
+ */
+class Students implements Serializable{
+    //member variables
+    int age;
+    String name;
+    double average;
+
+    /*
+    Pre: N/A
+    What it does: This method is the constructor of the Students class
+    Post: N/A
+     */
+    public Students() {
+        age = 0;
+        name = "";
+        average = 0.00;
+    }
+
+    /*
+    Pre: It takes the variables ageYears, firstName and marks as parameters
+    What is does: This method is the parametrized constructor of the Students class and it initializes the member variables
+    with values entered by the user
+    Post: N/A
+     */
+    public Students(int ageYears, String firstName, double marks){
+        age = ageYears;
+        name = firstName;
+        average = marks;
+    }
+
+    /*
+    Pre: N/A
+    What is does: This method returns the value of the variable age
+    Post: Value of variable age is returned
+     */
+    public int getAge() {
+        return age;
+    }
+    /*
+    Pre: N/A
+    What is does: This method sets the value of the variable age
+    Post: N/A
+     */
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    /*
+    Pre: N/A
+    What is does: This method returns the value of the variable name
+    Post: Value of variable name is returned
+     */
+    public String getName() {
+        return name;
+    }
+    /*
+    Pre: N/A
+    What is does: This method sets the value of the variable name
+    Post: N/A
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /*
+    Pre: N/A
+    What is does: This method returns the value of the variable average
+    Post: Value of the variable average is returned
+     */
+    public double getAverage() {
+        return average;
+    }
+    /*
+    Pre: N/A
+    What is does: This method sets the value of the variable average
+    Post: N/A
+     */
+    public void setAverage(double average) {
+        this.average = average;
+    }
+
+    /*
+    Pre: N/A
+    What is does: This method returns a string with the name, age and average given by the user
+    Post: A string with the name, age and average entered by the user is returned
+     */
+    public String toString(){
+        return "Information(name, age, average): " + getName() + ", " + getAge() + " and " + getAverage();
+    }
+
+}
+
+//This class is where the objects are written to and even read from the file
+public class ICS4U_FilesCode_WritingFile_AhujaR {
+    /*
+    Pre: N/A
+    What it does: This method is the driver code as it directs the program and the user
+    Post: N/A
+     */
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        //Object that resembles a file is created
+        File studentFile = new File("studentsFile.docx");
+
+        //program checks if file exists, if it does not a new file is created
+        if (studentFile.exists()){
+            System.out.println("File exists");
+        }else{
+            try{
+                studentFile.createNewFile();
+                System.out.println("File created");
+            }catch (IOException e){
+                //if file could not be created messages are displayed to the user for graceful termination
+                System.out.println("File could not be created");
+                System.err.println("IOException: " + e.getMessage());
+            }
+        }
+
+        Random random = new Random();
+        //array with names is created
+        String[] names = {"Rea", "Ahuja", "Computer", "Science", "Programming"};
+        //object array with 4 elements is created
+        Object[] array = new Object[4];
+
+        //random values are assigned to each parameter in object
+        for (int i = 0; i< array.length; i++){
+            int age = random.nextInt(5, 21);
+            double average = random.nextDouble(90, 100);
+            average = (double)Math.round(average*100)/100;
+            int nameNumber = random.nextInt(names.length);
+            //object is assigned as element in object array
+            array[i] = new Students(age, names[nameNumber], average);
+        }
+
+        try{
+            //Output file stream is created
+            FileOutputStream output = new FileOutputStream(studentFile);
+            //Object stream is created
+            ObjectOutputStream writeStudents = new ObjectOutputStream(output);
+
+            //object elements in array are written to the file
+            for (int i = 0; i < array.length; i++){
+                writeStudents.writeObject(array[i]);
+            }
+            //user is told that objects have been written to th efile
+            System.out.println("\nObjects written to file\n");
+
+            //user is asked if they would like to read the contents in the file
+            System.out.println("Would you like to see the information in the file?");
+            System.out.println("Yes (1) or No (2)");
+            int option = input.nextInt();
+
+            //if user chooses numeric option for yes, which is 1, program will enter following conditional statement
+            if (option == 1){
+                //Input file stream is created
+                FileInputStream inputs = new FileInputStream(studentFile);
+                //Object stream is created
+                ObjectInputStream readStudents = new ObjectInputStream(inputs);
+                //user is told that objects are being displayed
+                System.out.println("Objects read:\n");
+
+                //all the objects are displayed to the user
+                for (int i = 0; i < array.length; i++){
+                    System.out.println(readStudents.readObject());
+                }
+            }
+
+        }catch (FileNotFoundException e){
+            //If file could not be found program will enter this conditional statement and display the following messages
+            System.out.println("File not found");
+            System.out.println("FileNotFoundException: " + e.getMessage());
+        }catch (IOException e){
+            /*If there was an input/output operation error program will enter this conditional statement and display
+            the following messages
+             */
+            System.out.println("Problem with IO");
+            System.err.println("IOException: " + e.getMessage());
+        }catch(ClassNotFoundException e){
+            /* If the class could not be found, program will enter this conditional statement and display
+             the following messages
+             */
+            System.out.println("Class not found");
+        }
+
+        //user is told that program has ended
+        System.out.println("Program ends");
+
+
+
+
+
+    }
+}
