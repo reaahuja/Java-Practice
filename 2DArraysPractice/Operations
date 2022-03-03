@@ -1,0 +1,170 @@
+package com.example.operators;
+
+import java.util.*;
+public class twoDimensionalArrays {
+   public static void main(String[] args){
+       Scanner input = new Scanner(System.in);
+
+       System.out.println("Enter number of rows");
+       int rows = input.nextInt();
+
+       System.out.println("Enter number of columns");
+       int columns = input.nextInt();
+
+       int[][] twoDimArray = new int[rows][columns];
+
+       for (int i = 0; i<twoDimArray.length; i++){
+           for(int j = 0; j<twoDimArray[0].length; j++){
+               System.out.println("Enter an element for row " + i + " column " + j);
+               int elements = input.nextInt();
+               twoDimArray[i][j] = elements;
+           }
+       }
+
+       totalRowSum(twoDimArray);
+       totalColumnSum(twoDimArray);
+       diagonalProduct(twoDimArray);
+       positiveElements(twoDimArray);
+       maxElements(twoDimArray);
+       minElements(twoDimArray);
+       newArray(twoDimArray);
+   }
+
+   public static void totalRowSum (int[][] twoDimArray){
+       //Calculates and displays the total sum for each row
+
+       int sum = 0;
+
+       for (int i = 0; i<twoDimArray.length; i++){
+           for (int j = 0; j<twoDimArray[0].length; j++){
+               sum = sum + twoDimArray[i][j];
+           }
+           System.out.println("The sum for row" + i + "is" + sum);
+           sum = 0;
+       }
+
+
+
+   }
+
+   public static void totalColumnSum(int[][] twoDimArray){
+       //Calculates and displays the total sum for each column
+
+       int sum = 0;
+
+       for (int i = 0; i<twoDimArray.length; i++){
+           for(int j = 0; j<twoDimArray[0].length; j++){
+               sum = sum + twoDimArray[j][i];
+           }
+
+           System.out.println("The sum for column" + i + "is" + sum);
+           sum = 0;
+       }
+
+   }
+
+   public static void diagonalProduct(int[][] twoDimArray){
+       //Calculates and displays the product of all elements on each diagonal
+
+       int product = 1;
+       int product2 = 1;
+       int fori = twoDimArray.length;
+
+       for (int i = 0; i<twoDimArray.length; i++){
+           product = product*twoDimArray[i][i];
+       }
+       System.out.println("The product of all the elements on the declined diagonal is " + product);
+
+       for (int j = 0; j<twoDimArray.length; j++){
+           fori--;
+           product2 = product2*twoDimArray[j][fori];
+       }
+
+       System.out.println("The product of all the elements on the inclined diagonal is " + product2);
+
+
+
+   }
+
+   public static int positiveElements (int[][] twoDimArray){
+       //Counts the number of all positive elements of the entire 2-d array
+
+       int counter = 0;
+
+       for (int i = 0; i< twoDimArray.length; i++){
+           for(int j = 0; j<twoDimArray[0].length; j++){
+               if (twoDimArray[i][j] > 0){
+                   counter++;
+               }
+               System.out.println("Array " + twoDimArray[i][j]);
+           }
+       }
+
+       System.out.println("There are " + counter + " positive elements");
+
+       return counter;
+
+   }
+
+   public static void maxElements (int[][] twoDimArray){
+       //Determines and displays the maximum element from each row
+
+       int greatest = 0;
+
+
+       for (int i = 0; i<twoDimArray.length; i++){
+           int element = twoDimArray[i][0];
+           for (int j = 0; j<twoDimArray[0].length; j++){
+               if (twoDimArray[i][j] > element){
+                   greatest = twoDimArray[i][j];
+               }
+
+
+           }
+           System.out.println("Greatest number is in row " + i + " is " + greatest);
+           greatest = 0;
+       }
+
+
+
+
+   }
+
+   public static void minElements (int[][] twoDimArray){
+       //Determines and displays the minimum element from each column
+
+       //int element = twoDimArray[0][0];
+
+
+       for (int i = 0; i<twoDimArray.length; i++){
+
+           int element = twoDimArray[0][i];
+           int smallest = twoDimArray[0][i];
+
+           for (int j = 0; j<twoDimArray[0].length; j++){
+               if (twoDimArray[j][i] < element){
+                   smallest = twoDimArray[j][i];
+               }
+           }
+           System.out.println("Smallest number in column " + i + " is " + smallest);
+           smallest = twoDimArray[0][i];
+       }
+
+   }
+
+   public static void newArray (int[][] twoDimArray){
+       //create a new two-dimensional array that has the rows equal to the columns of the initial
+       //array and the columns equal to the rows of the initial array
+
+       int rows = twoDimArray.length;
+       int columns = twoDimArray[0].length;
+
+       int[][] newArray = new int[rows][columns];
+
+   }
+
+}
+
+
+
+
