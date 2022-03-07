@@ -1,0 +1,158 @@
+//This program will allow the user to store and manipulate matrices of numbers. The matrix that they create will added and multiplied with another random matrix created by the user. The calculations and results will be displayed to the user.
+import java.util.Random;
+import java.util.Scanner;
+
+public class Ahuja_2DArrays_Part2 {
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+		
+	// the user is asked to enter the number of rows and columns for the matrix 
+		System.out.println("Enter the number of rows");
+		int rows = input.nextInt();
+		
+		System.out.println("Enter the number of columns");
+		int columns = input.nextInt();
+	// the matrix is intialized with the number of rows and columns given by the user
+		int[][] matrix = new int[rows][columns];
+	// the user enters values that will go inside the matrix
+		for(int i = 0; i<matrix.length; i++){
+			for (int j = 0; j<matrix[0].length; j++){
+				System.out.println("Enter a value for row " + i + " and column " + j);
+				int value = input.nextInt();
+				matrix[i][j] = value;
+			}
+		}
+		// this method displays the matrix created by the user
+		displayMatrix(matrix, rows, columns);
+		
+		// the matrix with random numbers is created, with the same number of rows and columns as the matrix created by the user
+		int[][] randomMatrix = new int[rows][columns];
+		
+		Random random = new Random();
+		// the random matrix is filled with values 
+		for(int k = 0; k<matrix.length; k++){
+			for(int q = 0; q<matrix[0].length; q++){
+				int number = random.nextInt(4);
+				randomMatrix[k][q] = number;
+			}
+		}
+		// this method displays the random matrix created in the main method
+		displayRandomMatrix(randomMatrix, rows, columns);
+		
+		//this method displays the addition of the matrix created by the user and the random matrix (the matrix created by the program)
+		displayAddition(matrix, randomMatrix, rows, columns);
+		
+		// this method displays the sum of the user created matrix and program created matrix
+		matrixAddition(matrix, randomMatrix, rows, columns);
+		
+		// this method displays the multiplication of the user created matrix and program created matrix
+		displayMultiply(matrix, randomMatrix, rows, columns);
+		
+		// this method displays the product matrix of the user created matrix and program created matrix
+		matrixMultiply(matrix, randomMatrix, rows, columns);
+		
+	
+		
+		
+		
+	}
+	
+	public static void displayMatrix (int[][] matrix, int rows, int columns){
+		// this method displays the matrix created by the user
+		System.out.println(" Matrix is displayed below");
+		for (int i = 0; i<rows; i++){
+			for (int j = 0; j < columns; j++){
+				System.out.print(" " + matrix[i][j] + " ");
+			}
+			System.out.println(" ");
+		}
+	}
+	
+	public static void displayRandomMatrix(int[][] randomMatrix, int rows, int columns){
+		// this method displays the random matrix created in the main method
+		System.out.println(" Random matrix is displayed below");
+		for (int i = 0; i<rows; i++){
+			for (int j = 0; j < columns; j++){
+				System.out.print(" " + randomMatrix[i][j] + " ");
+			}
+			System.out.println(" ");
+		}
+	}
+	
+	public static void displayAddition (int[][]matrix, int[][]randomMatrix, int rows, int columns){
+		// this method displays the addition of the matrix created by the user and the random matrix
+		System.out.println(" Addition of matrix and random matrix is displayed");
+		for (int i = 0; i<rows; i++){
+			for (int j = 0; j < columns; j++){
+				System.out.print(" " + matrix[i][j] + " + " + randomMatrix[i][j] + " ");
+			}
+			System.out.println(" ");
+		}
+		
+		
+	}
+	
+	public static void matrixAddition (int[][] matrix, int[][] randomMatrix, int rows, int columns){
+		// this method displays the sum of the user created matrix and program created matrix
+		System.out.println(" Sum matrix is displayed below");
+		
+		//sumMatrix array which will store the sum of the user created matrix and program created matrix is declared and intialized.
+		int[][] sumMatrix = new int[rows][columns];
+		
+		for (int i = 0; i<matrix.length; i++){
+			for (int j = 0; j<matrix[0].length; j++){
+				//sumMatrix array is filled
+				sumMatrix[i][j] = matrix[i][j] + randomMatrix[i][j];
+			}
+		}
+		
+		for (int q = 0; q<rows; q++){
+			for (int w = 0; w < columns; w++){
+				//values stored in sumMatrix array are printed
+				System.out.print(" " + sumMatrix[q][w] + " ");
+			}
+			System.out.println(" ");
+		}
+		
+		
+	}
+	
+	public static void displayMultiply(int[][] matrix, int[][] randomMatrix, int rows, int columns){
+		// this method displays the multiplication of the user created matrix and program created matrix
+		System.out.println(" Multiplication of matrix and random matrix is displayed");
+		for (int i = 0; i<rows; i++){
+			for (int j = 0; j < columns; j++){
+				System.out.print(" " + matrix[i][j] + " x " + randomMatrix[i][j] + " ");
+			}
+			System.out.println(" ");
+		}
+	}
+	
+	
+	public static void matrixMultiply (int[][] matrix, int[][] randomMatrix, int rows, int columns){
+		// this method displays the product matrix of the user created matrix and program created matrix
+		System.out.println(" The product matrix is displayed below");
+		
+		//productMatrix array which will store the product of the user created matrix and program create matrix is declared and intialized 
+		int[][] productMatrix = new int[rows][columns];
+		
+		for (int i = 0; i<matrix.length; i++){
+			for (int j = 0; j<matrix[0].length; j++){
+				// productMatrix array is filled with the product of the matrix and random matrix
+				productMatrix[i][j] = matrix[i][j] * randomMatrix[i][j];
+			}
+		}
+		
+		for (int q = 0; q<rows; q++){
+			for (int w = 0; w < columns; w++){
+				// values stored in productMatrix are printed
+				System.out.print(" " + productMatrix[q][w] + " ");
+			}
+			System.out.println(" ");
+		}
+		
+	}
+
+	
+
+}
