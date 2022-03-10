@@ -1,0 +1,67 @@
+import java.util.*;
+
+public class Ahuja_R_Bubble_Sort {
+    public static void main(String[] args) {
+
+        int[] array = new int[10];
+
+        System.out.println("Random array is: ");
+
+        Random random = new Random();
+        for (int i = 0; i<array.length; i++){
+            int number = random.nextInt(30) + 1;
+            array[i] = number;
+            System.out.print(array[i] + " ");
+        }
+
+        System.out.println(" ");
+        System.out.println("Array steps:");
+
+        sorting(array);
+
+        improvedSorting(array);
+
+    }
+
+    public static void improvedSorting(int[] array) {
+        int temp = 0;
+        for (int i = 0; i<array.length -1; i++){
+            for (int j = 0; j<array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    temp = array[j + 1];
+                    array[j + 1] = array[j];
+                    array[j] = temp;
+                }
+                for (int k = 0; k<array.length; k++){
+                    System.out.print(array[k] + " ");
+                }
+                System.out.println(" ");
+            }
+        }
+
+
+
+    }
+
+    public static void sorting(int[] array) {
+        int temp = 0;
+        int sortingCounter = 0;
+        for (int i = 0; i<array.length -1; i++){
+            for (int j = 0; j<array.length-1; j++){
+                if (array[j] > array[j+1]){
+                    temp = array[j+1];
+                    array[j+1] = array[j];
+                    array[j] = temp;
+                }
+                sortingCounter++;
+                for (int k = 0; k<array.length; k++){
+                    System.out.print(array[k] + " ");
+                }
+                System.out.println(" ");
+            }
+        }
+
+        System.out.println("The program did " + sortingCounter + " comparisons before completely sorting the array!");
+
+    }
+}
