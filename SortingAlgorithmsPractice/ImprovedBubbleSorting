@@ -1,0 +1,90 @@
+import java.util.*;
+
+public class Ahuja_R_Bubble_Sort_Question_5 {
+    public static void main(String[] args) {
+        //for part b change 10 to 100 in array declarations
+        int[] array = new int[10];
+        int runs = 0;
+        int[][] table1 = new int[2][10];
+        int[][] table2 = new int[2][10];
+        //for part b change 10 to 100 
+        while (runs < 10){
+            Random random = new Random();
+            for (int i = 0; i<array.length; i++){
+                int number = random.nextInt(30) + 1;
+                array[i] = number;
+            }
+
+
+
+            int counterMethod1 = sorting(array);
+            int counterMethod2 = improvedSorting(array);
+
+            for (int j = runs; j<= runs; j++){
+                table1[0][j] = runs;
+                table2[0][j] = runs;
+                table1[1][j] =  counterMethod1;
+                table2[1][j] = counterMethod2;
+            }
+
+            runs++;
+
+        }
+
+        System.out.println("Method 1 Table:");
+
+        for (int k = 0; k< table1[0].length; k++){
+            System.out.print(table1[0][k] + " ");
+            System.out.print(table1[1][k]);
+            System.out.println(" ");
+        }
+
+        System.out.println("Method 2 Table:");
+
+        for (int q = 0; q< table1[0].length; q++){
+            System.out.print(table2[0][q] + " ");
+            System.out.print(table2[1][q]);
+            System.out.println(" ");
+        }
+
+
+
+
+    }
+
+    public static int improvedSorting(int[] array) {
+        int temp = 0;
+        int sortingCounter = 0;
+        for (int i = 0; i<array.length -1; i++){
+            for (int j = 0; j<array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    temp = array[j + 1];
+                    array[j + 1] = array[j];
+                    array[j] = temp;
+                }
+                sortingCounter++;
+            }
+        }
+
+        return sortingCounter;
+    }
+
+
+    public static int sorting(int[] array) {
+        int temp = 0;
+        int sortingCounter = 0;
+        for (int i = 0; i<array.length -1; i++){
+            for (int j = 0; j<array.length-1; j++){
+                if (array[j] > array[j+1]){
+                    temp = array[j+1];
+                    array[j+1] = array[j];
+                    array[j] = temp;
+                    sortingCounter++;
+                }
+                sortingCounter++;
+            }
+        }
+
+        return sortingCounter;
+    }
+}
