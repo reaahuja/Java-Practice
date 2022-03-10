@@ -1,0 +1,51 @@
+import java.util.*;
+public class Ahuja_R_Selection_Sort {
+    public static void main(String[] args) {
+
+        int[] array = new int[10];
+
+        Random random = new Random();
+        for (int j = 0; j<array.length; j++){
+            int number = random.nextInt(20) + 1;
+            array[j] = number;
+        }
+
+        for (int i = 0; i<array.length; i++){
+            System.out.print(array[i] + " ");
+        }
+        System.out.println("");
+
+        sorting2(array);
+
+    }
+
+
+    public static void sorting2(int[] array) {
+        int temp = 0;
+        int comparisons = 0;
+
+        for (int i = 0; i<array.length; i++){
+            for (int j = i; j<array.length; j++){
+                if (array[j] < array[i]){
+                    temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+                comparisons++;
+            }
+            System.out.println(" The smallest number is " + array[i]);
+            System.out.println("");
+            displayArray(array);
+            System.out.println("");
+        }
+        System.out.println("");
+        System.out.println("The program made the following number of comparisons: " + comparisons);
+
+    }
+
+    public static void displayArray(int[] array) {
+        for (int i = 0; i<array.length; i++){
+            System.out.print(array[i] + " ");
+        }
+    }
+}
