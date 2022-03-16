@@ -1,0 +1,26 @@
+import java.util.*;
+public class cathalanNumbers {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter a number");
+        int number = input.nextInt();
+
+        System.out.println(findNumber(number));
+    }
+
+    public static double findNumber(int number) {
+        double tempSum = 0;
+        int value = 0;
+        int value2 = 0;
+
+        if (number>-1){
+            value = number -1;
+            tempSum = ((4*value) + 2)*findNumber(value)/(value + 2);
+        }else{
+            tempSum = -0.5;
+        }
+
+        return tempSum;
+    }
+}
