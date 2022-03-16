@@ -1,0 +1,43 @@
+import java.util.*;
+public class arraySum {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9 , 10};
+        int value = array.length;
+
+
+        System.out.println(totalSum(array, value));
+
+    }
+
+    public static int arrayAddition(int value) {
+
+        int tempSum = 0;
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9 , 10};
+
+
+        if (value > 0){
+            tempSum = array[value-1] + arrayAddition(value-1);
+        }else{
+            tempSum = 0;
+        }
+
+        return tempSum;
+
+    }
+
+    public static int totalSum(int[] array, int value) {
+        int tempSum = 0;
+
+        if(value > 0){
+            tempSum = totalSum(array, value-1) + array[value-1];
+         
+        }else{
+            return tempSum=0;
+        }
+
+        return tempSum;
+    }
+}
