@@ -1,0 +1,73 @@
+package Ahuja_R_BogoSort_Code;
+
+//The purpose of this program is to demonstrate the function of the Bogo Sort algorithim 
+import java.util.*;
+public class Ahuja_R_BogoSort_Code {
+public static void main(String[] args) {
+  Scanner input = new Scanner(System.in);
+  Random random = new Random();
+  int size, number;
+
+// asks the user the size of the array
+  System.out.println("How large should the random array be?");
+  size = input.nextInt();
+// create array
+  int[] array = new int[size];
+
+  System.out.println("Random array: ");
+//assigns each index in array with random elements
+  for (int k = 0; k<array.length; k++){
+    number = random.nextInt(20)+1;
+    array[k] = number;
+    System.out.print(array[k] + " ");
+  }
+  System.out.println("");
+
+
+//the method bogoSort(array, random) returns the number of comparisons made in order to sort the array
+  System.out.println("Comparisons: " + bogoSort(array, random));
+  System.out.println("");
+// sorted array is printed
+  for (int j = 0; j<array.length; j++){
+    System.out.print(array[j] + " ");
+  }
+  System.out.println("");
+}
+//the following method performs the bogo sort algorithim on the created array
+public static int bogoSort(int[] array, Random random){
+  boolean sorted = false;
+  int temp, randomIndex;
+  int comparisons = 0;
+
+  
+  while(!sorted){
+    sorted = true;
+    for (int i = 0; i<array.length-1; i++){
+      comparisons++;
+      //the program has made a comparison, thereby add a value of 1 to the variable, comparisons
+      if (array[i] > array[i+1]){
+        sorted = false;
+        // if the array is in a random order, continue the loop
+      }
+    }
+    if(sorted){
+      return comparisons;
+      // if the sorted = true, thereby the array is sorted, return the number of comparisons and end the while loop.
+    }
+    
+    for (int n = 0; n<array.length; n++){
+      // this for loop has the purpose of shuffling the elements within the array
+          randomIndex = random.nextInt(array.length);
+          temp = array[n];
+          array[n] = array[randomIndex]; 
+          array[randomIndex] = temp;
+          // the value of array[n] and the value of a random index (array[randomIndex]) is switched 
+
+          //displays array after each shuffle 
+          System.out.print(array[n] + " ");
+      }
+      System.out.println("");
+    }
+    return comparisons;
+}
+}
