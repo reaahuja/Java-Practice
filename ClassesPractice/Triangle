@@ -51,7 +51,7 @@ class Triangle{
 	
 }
 
-public class question1 {
+public class triangleQuestions {
 	public static void main(String[] args){
 		Scanner input = new Scanner(System.in);
 		Triangle tri = new Triangle();
