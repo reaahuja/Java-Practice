@@ -1,0 +1,58 @@
+import java.util.*;
+class Student{
+	String firstName;
+	String lastName;
+	String hobby;
+	int age;
+	String collection;
+	String strAge;
+	
+	public Student(){
+		firstName = "";
+		lastName = "";
+		hobby = "";
+		age = 0;
+		strAge = "";
+		collection = "";
+	}
+	
+	public Student(String fN, String lN, String hBy, int num, String age2){
+		firstName = fN;
+		lastName = lN;
+		hobby = hBy;
+		age = num;
+		strAge = age2;
+	}
+	
+	public int agedGrade(){
+		return (age - 4);
+	}
+	
+	public String collectedInfo(){
+		collection = firstName + " " + lastName + " " + hobby + " " + strAge;
+		return collection;
+	}
+}
+	
+public class studentQuestions {
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+		Student person = new Student();
+		
+		System.out.println("Enter your first name: ");
+		person.firstName = input.next();
+		System.out.println("Enter your last name: ");
+		person.lastName = input.next();
+		System.out.println("Enter a hobby: ");
+		person.hobby = input.next();
+		System.out.println("Enter your age: ");
+		person.age = input.nextInt();
+		person.strAge = input.next();
+		// is there another way to do it, instead of taking the age input twice?
+		
+		
+		System.out.println("Student is in grade: " + person.agedGrade());
+		System.out.println("Given information: " + person.collectedInfo());
+		
+	}
+	}
