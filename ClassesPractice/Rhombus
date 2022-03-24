@@ -38,7 +38,7 @@ class Rhombus{
 	
 }
 
-public class question3 {
+public class rhombusQuestions{
 	public static void main(String[] args){
 		Scanner input = new Scanner(System.in);
 		Rhombus diamond = new Rhombus();
