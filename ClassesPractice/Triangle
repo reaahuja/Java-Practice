@@ -1,0 +1,71 @@
+import java.util.*;
+
+class Triangle{
+	int side1;
+	int side2;
+	int side3;
+	public Triangle(){
+		side1 = 0;
+		side2 = 0;
+		side3 = 0;
+	}
+	
+	public Triangle(int s1, int s2, int s3){
+		side1 = s1;
+		side2 = s2;
+		side3 = s3;
+	}
+	
+	public boolean isValid(){
+		if (side3 > ((side1*side1)+(side2*side2))){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean isIsoceles(){
+		if (side1 == side2){
+			if (side2 == side3){
+				return false;
+			}
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean isEquilateral(){
+		if (side1 == side2){
+			if(side2 == side3){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+	}
+	
+
+	
+}
+
+public class question1 {
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+		Triangle tri = new Triangle();
+		
+		System.out.println("Enter length of side 1: ");
+		tri.side1 = input.nextInt();
+		System.out.println("Enter length of side 2: ");
+		tri.side2 = input.nextInt();
+		System.out.println("Enter length of the hypotenuse (side 3): ");
+		tri.side3 = input.nextInt();
+		
+		System.out.println("The values entered are: " + tri.isValid());
+		System.out.println("Is the triangle isoceles? " + tri.isIsoceles());
+		System.out.println("Is the triangle equilateral? " + tri.isEquilateral());
+	}
+
+}
