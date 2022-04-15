@@ -1,0 +1,64 @@
+import java.util. *;
+
+public class question8_pg210 {
+    int firstNum;
+    int secondNum;
+    int sum;
+    int counter;
+    int score;
+
+    public question8_pg210(){
+        firstNum = 0;
+        secondNum = 0;
+        sum = 0;
+        counter = 0;
+        score = 0;
+    }
+
+    public int randomFirst(){
+        Random random = new Random();
+        firstNum = random.nextInt(20);
+        return firstNum;
+    }
+
+    public int randomSecond(){
+        Random random = new Random();
+        secondNum = random.nextInt(20);
+        return secondNum;
+    }
+
+    public int adder(){
+        Scanner input = new Scanner(System.in);
+        int rfirstNum = randomFirst();
+        int rSecondNum = randomSecond();
+        int sum = rfirstNum + rSecondNum;
+        System.out.println(rfirstNum + " + " + rSecondNum + " = ");
+        int answer = input.nextInt();
+        while (counter < 3){
+            counter++;
+            if (answer == sum){
+                if (counter == 1){
+                    score = score + 3;
+                    return score;
+                }else if(counter == 2){
+                    score = score +2;
+                    return score;
+                }else if (counter == 3){
+                    score = score + 1;
+                    return score;
+                }
+
+            }else{
+                System.out.println("Wrong Answer. Enter another answer: ");
+                answer = input.nextInt();
+            }
+        }
+        return score;
+
+    }
+    public static void main(String[] args) {
+        question8_pg210 question = new question8_pg210();
+        System.out.println("Score is " + question.adder());
+
+    }
+}
