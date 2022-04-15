@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class question5_pg208 {
+    int playerStones;
+
+    public question5_pg208(){
+        playerStones = 0;
+    }
+
+    public int playerTake(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the number of stones to take between 1-3: ");
+        playerStones = input.nextInt();
+        int value = totalStones();
+        value = value - playerStones;
+        System.out.println("There are now " + value + " stones left");
+        return value;
+    }
+
+    public int totalStones(){
+        Random random = new Random();
+       // int allStones = random.nextInt(20) + 1;
+        int allStones = 12;
+        System.out.println("Total number of stones = " + allStones);
+        return allStones;
+    }
+
+    public int computerTake(){
+        Random random = new Random();
+        int computerStones = random.nextInt(3) + 1;
+        int valueComp = playerTake();
+        System.out.println("The computer took " + computerStones + " stones");
+        valueComp = valueComp - computerStones;
+        return valueComp;
+    }
+    public static void main(String[] args) {
+        question5_pg208 question = new question5_pg208();
+        System.out.println("There are " + question.computerTake() + " stones left");
+
+    }
+}
