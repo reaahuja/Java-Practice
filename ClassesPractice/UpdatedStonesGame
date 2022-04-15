@@ -1,0 +1,50 @@
+import java.util.*;
+
+public class question5_Updating {
+    int playerStones;
+    int allStones;
+
+    public question5_Updating(){
+        playerStones = 0;
+        allStones = 0;
+    }
+
+    public question5_Updating(int sumStones){
+        allStones = sumStones;
+    }
+
+    public int playerTake(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the number of stones to take between 1-3: ");
+        playerStones = input.nextInt();
+        return playerStones;
+    }
+
+    public int totalStones(){
+        System.out.println("Total number of stones = " + allStones);
+        allStones = allStones - playerTake() - computerTake();
+        System.out.println("Total number of stones are now = " + allStones);
+        return allStones;
+    }
+
+    public int computerTake(){
+        Random random = new Random();
+        int computerStones = random.nextInt(3) + 1;
+        System.out.println("The computer took " + computerStones + " stones");
+        return computerStones;
+    }
+    public static void main(String[] args) {
+        // Random random = new Random();
+        // int allStones = random.nextInt(20) + 1;
+        int totalStones = 12;
+        question5_Updating question = new question5_Updating(totalStones);
+
+        System.out.println(question.totalStones());
+
+        while (question.totalStones() > 1){
+            System.out.println("New round: ");
+            System.out.println(question.totalStones());
+        }
+
+    }
+}
