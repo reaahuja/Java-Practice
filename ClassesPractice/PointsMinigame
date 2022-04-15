@@ -1,0 +1,89 @@
+import java.util.*;
+
+class DiceRoll{
+    int points;
+    int risk;
+    int call;
+
+
+    public DiceRoll(){
+        points = 0;
+        risk = 0;
+        call = 0;
+    }
+
+    public DiceRoll(int ps, int rk, int cll){
+        points = ps;
+        risk = rk;
+        call = cll;
+    }
+
+    private int diceroll1(){
+        Random random = new Random();
+        int dice1 = random.nextInt(6) + 1;
+        return dice1;
+    }
+
+    private int diceroll2(){
+        Random random = new Random();
+        int dice2 = random.nextInt(6) + 1;
+        return dice2;
+    }
+
+
+    public int calling(){
+        //something wrong is going on here
+        if (call == 0){
+            System.out.println("You are in call 0");
+            System.out.println("Rolled is: " + rolled());
+            if(rolled() >= 2 && rolled() <= 6){
+                points = points + risk*2;
+            }else{
+                points = points - risk*2;
+            }
+        }
+
+        if (call == 1){
+            System.out.println("You are in call 1");
+            System.out.println("Rolled is: " + rolled());
+            if (rolled() >= 8 && rolled() <= 12){
+                points = points + risk*2;
+            }else{
+                points = points - risk*2;
+            }
+        }
+
+        return points;
+    }
+    public int rolled(){
+        int roll = diceroll1() + diceroll2();
+        return roll;
+    }
+
+}
+
+public class question4_pg208 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        int points = 1000;
+        System.out.println("You have " + points + " points");
+
+        System.out.println("How many points do you want to risk? ");
+        int risk = input.nextInt();
+
+        System.out.println("Make a call: ");
+        int call = input.nextInt();
+
+        DiceRoll game = new DiceRoll(points, risk, call);
+
+
+        System.out.println("You now have " + game.calling() + " points");
+
+        System.out.println("Enter 1 to continue or 0 to exit");
+        int option = input.nextInt();
+
+
+
+    }
+}
