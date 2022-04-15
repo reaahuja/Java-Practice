@@ -1,0 +1,95 @@
+import java.util.*;
+
+class Num{
+    int ones;
+    int tens;
+    int hundreds;
+    int wholeNum;
+    int number;
+
+    public Num(){
+        ones = 0;
+        tens = 0;
+        hundreds = 0;
+        wholeNum = 0;
+        number = 0;
+    }
+
+    public Num(int integ){
+        number = integ;
+    }
+
+    public int ones(){
+        ones = number%10;
+        return ones;
+    }
+
+    public int tens(){
+        tens = number/10;
+        System.out.println("Tens is " + tens);
+        tens = tens%10;
+        System.out.println("Tens is " + tens);
+        return tens;
+    }
+
+    public int hundreds(){
+        hundreds = number/100;
+        hundreds = hundreds%10;
+        return hundreds;
+    }
+
+    public int wNum(){
+        if (number < 0){
+            number = number*-1;
+            return number;
+        }else{
+            return number;
+        }
+    }
+
+
+}
+
+public class question2_pg208 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter an integer: ");
+        int integer = input.nextInt();
+
+        System.out.println("Show (w)hole number ");
+        System.out.println("show (o)nes place digit ");
+        System.out.println("show (t)ens place digit ");
+        System.out.println("show (h)undreds place digit ");
+
+        System.out.println(" (q)uit ");
+        String option = input.next();
+
+        Num number = new Num(integer);
+
+        while (!(option.equals("q"))){
+            if (option.equals("w")){
+                System.out.println("The whole number is: " + number.wNum());
+            }else if(option.equals("o")){
+                System.out.println("The ones digit is: " + number.ones());
+
+            }else if(option.equals("t")){
+                System.out.println("The tens digit is: " + number.tens());
+
+            }else if(option.equals("h")){
+                System.out.println("The hundreds digit is: " + number.hundreds());
+
+            }else{
+                System.out.println("Invalid input");
+            }
+            System.out.println("Show (w)hole number ");
+            System.out.println("show (o)nes place digit ");
+            System.out.println("show (t)ens place digit ");
+            System.out.println("show (h)undreds place digit ");
+
+            System.out.println(" (q)uit ");
+            option = input.next();
+        }
+        System.out.println("Program ends");
+    }
+}
