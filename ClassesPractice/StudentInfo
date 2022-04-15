@@ -1,0 +1,57 @@
+import java.util.*;
+
+class Student{
+    String firstName;
+    String lastName;
+    String hobby;
+    int age;
+
+    public Student(){
+        firstName = "";
+        lastName = "";
+        hobby = "";
+        age = 0;
+    }
+
+    public Student(String fN, String lN, String hobbies, int years){
+        firstName = fN;
+        lastName = lN;
+        hobby = hobbies;
+        age = years;
+    }
+
+    public int grade(){
+        int grade = age - 5;
+        return grade;
+    }
+
+    public String getInfo(){
+        String age2 = Integer.toString(age);
+        String collection = firstName + " " + lastName + " " + hobby + " " + age2;
+        return collection;
+    }
+}
+
+public class student_Question2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter you first name: ");
+        String firstName = input.next();
+
+        System.out.println("Enter your last name: ");
+        String lastName = input.next();
+
+        System.out.println("Enter a hobby: ");
+        String hobby = input.next();
+
+        System.out.println("Enter your age: ");
+        int age = input.nextInt();
+
+        Student person = new Student(firstName, lastName, hobby, age);
+
+        System.out.println("You are in grade: " + person.grade());
+        System.out.println("Information entered: " + person.getInfo());
+
+    }
+}
