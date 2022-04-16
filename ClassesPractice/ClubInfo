@@ -1,0 +1,27 @@
+public class Club {
+    private String[] members;
+    static int numOfMembers;
+
+    public Club(){
+        numOfMembers = 0;
+    }
+    public Club(String[] theMembers){
+        members = theMembers;
+        numOfMembers += theMembers.length;
+    }
+    public String toString(){
+        return "members";
+    }
+
+    public String[] getMembers() {
+        return members;
+    }
+
+    public int getNumOfMembers() {
+        return numOfMembers;
+    }
+}
+
+
+
+
