@@ -46,11 +46,7 @@ class clientCode{
 
         System.out.println(Club_1.equals(Club_2));
 
-        Club Club_1 = new Club(members1);
-        System.out.println(Club_1.getNumOfMembers());
-
-        Club Club_2 = new Club(members2);
-        System.out.println(Club_2.getNumOfMembers());
+       
 
 
 
