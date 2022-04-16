@@ -1,0 +1,156 @@
+/*
+ * Define the class Circle that will contain 2 members:
+ *   - radius - it will be specific to each instance of this class
+ *  	- PI 	- it will be common to all instances of this class
+ */
+class Circle2 {
+    /*
+     * Define PI as private static constant member
+     */
+    private static final double PI = 3.14;
+    /*
+     * Define radius
+     */
+    private int radius;
+
+    /*
+     * Constructor with no parameters
+     */
+    public Circle2()
+    {
+        this.radius = 0;
+    }
+
+    /*
+     * Constructor with the new radius as parameter (overloading)
+     */
+    public Circle2(int newRadius)
+    {
+        this.radius = newRadius;
+    }
+
+    /*
+     * Accessors for radius, as radius is defined as private and it will not be visible
+     * from outside of the class
+     */
+    public void SetRadius(int newRadius)
+    {
+        this.radius = newRadius;
+    }
+
+    public int GetRadius()
+    {
+        return this.radius;
+    }
+
+    /*
+     * Area method - it calculates the area of the circle
+     */
+    public double Area()
+    {
+        return PI * this.radius * this.radius;
+    }
+
+    /*
+     * Length method - it calculates the length of the circle
+     */
+    public double Length()
+    {
+        return 2 * PI * this.radius;
+    }
+
+    /*
+     * It builds a string with info about the circle
+     */
+    public String toString()
+    {
+        return "Circle has radius = " + this.radius +
+                " => area = " + this.Area() +
+                ", length = " + this.Length();
+    }
+}
+
+/*
+ * Define the class Cylinder that inherits the Circle class:
+ *   - radius - it will be specific to each instance of this class
+ *  	- PI 	- it will be common to all instances of this class
+ */
+class Cylinder extends Circle2
+{
+    int height;
+    /*
+     * Constructor with no parameters
+     */
+    public Cylinder()
+    {
+        super();
+        this.height = 0;
+    }
+
+    /*
+     * Constructor with the new radius and height as parameters (overloading)
+     */
+    public Cylinder(int arg_r, int arg_h)
+    {
+        super(arg_r);
+        this.height = arg_h;
+    }
+
+    /*
+     * Accessors for radius, as radius is defined as private and it will not be visible
+     * from outside of the class
+     */
+    public void SetHeight(int newHeight)
+    {
+        this.height = newHeight;
+    }
+
+    public int GetHeight()
+    {
+        return this.height;
+    }
+
+    /*
+     * Volume - it calculates the volume of the cylinder
+     */
+    public double Volume()
+    {
+        return super.Area() * this.height;
+    }
+
+    /*
+     * Area - it calculates the total area of the cylinder
+     */
+    public double Area()
+    {
+        return 2 * super.Area() + super.Length() * this.height;
+    }
+
+    public String toString()
+    {
+        return "Base circle has radius = " + super.GetRadius() +
+                " => Base Area = " + super.Area()  +
+                ", length 	= " + super.Length() +
+                "\nCylinder has height 	= " + this.height        	+
+                " => Volume	= " + this.Volume() +
+                ", total area = " + this.Area();
+    }
+}
+public class calculation {
+    public static void main(String[] args) {
+        /*
+         * Create an instance of the Cylinder class,
+         * having radius = 3 and h = 4
+         */
+        Cylinder c = new Cylinder(3, 4);
+
+
+        /*
+         * Print the info about the defined cylinder
+         */
+        System.out.println(c.toString());
+
+
+
+    }
+}
