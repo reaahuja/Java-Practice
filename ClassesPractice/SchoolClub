@@ -1,0 +1,59 @@
+import java.util.Objects;
+
+public class SchoolClub extends Club {
+    private String advisor;
+
+    public SchoolClub(){
+    }
+
+    public SchoolClub(String theAdvisor, String[] theMembers){
+        super(theMembers);
+        advisor = theAdvisor;
+    }
+
+    public String getAdvisor() {
+        return advisor;
+    }
+
+    public String toString(){
+        return advisor;
+    }
+
+    //is it possible to do this without the toString method
+    public boolean equals(Club secondClub){
+        if (toString().equals(secondClub.toString())){
+            if (super.getMembers().equals(secondClub.getMembers())){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+
+}
+
+class clientCode{
+    public static void main(String[] args) {
+        String[] members1 = {"James", "Bob"};
+        String[] members2 = {"Frank", "Sarah", "Tom"};
+        String[] members3 = {"Cindy", "Christine", "Abi", "George"};
+
+        SchoolClub Club_1 = new SchoolClub("Ms. A", members1);
+        SchoolClub Club_2 = new SchoolClub("Ms. A", members1);
+
+        System.out.println(Club_1.equals(Club_2));
+
+        Club Club_1 = new Club(members1);
+        System.out.println(Club_1.getNumOfMembers());
+
+        Club Club_2 = new Club(members2);
+        System.out.println(Club_2.getNumOfMembers());
+
+
+
+
+    }
+}
