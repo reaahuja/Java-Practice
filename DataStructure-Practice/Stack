@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+class Stack{
+
+    int []data;
+    int top;
+
+    public Stack(int maxItems){
+        data = new int[maxItems];
+        top=-1;
+    }
+
+    public int pop(){
+        top = top -1;
+        return data[top+1];
+
+    }
+
+    public void push(int item){
+        if(top <= data.length-1){
+            top = top +1;
+            data[top]=item;
+        }
+    }
+
+    public int top(){
+        return data[top];
+    }
+
+    public boolean isEmpty(){
+        if (top==-1){
+            return true;
+        }
+        else return false;
+
+    }
+
+    public int size(){
+        if (isEmpty()){
+            return 0;
+        }
+        else {
+            return top+1;
+        }
+    }
+
+    public void makeEmpty()
+    {
+        top=-1;
+    }
+}
+
+public class StackCode {
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Stack data = new Stack(10);
+
+        data.push(5);
+
+        System.out.println("Top of the stack is " + data.top());
+        System.out.println("Items in the stack " + data.size());
+
+
+    }
+}
+
