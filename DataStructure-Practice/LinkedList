@@ -1,0 +1,87 @@
+class LinkedList2
+{
+    private Node2 head;
+
+    public LinkedList2() {
+        head = null;
+    }
+
+    public void addAtFront(int str) {
+        Node2 newNode = new Node2(str);
+        newNode.setNext(head);
+        head = newNode;
+    }
+
+    public void remove(int str) {
+        Node2 current = head;
+        Node2 previous = head;
+
+        if (current.getData() == str) {
+            head = current.getNext();
+        } else {
+            while (current.getNext() != null) {
+                previous = current;
+                current = current.getNext();
+                if (current.getData() == str) {
+                    previous.setNext(current.getNext());
+                }
+            }
+        }
+    }
+
+    public String toString() {
+        Node2 current = head;
+        String listString;
+
+        if (current != null) {
+            listString = current.getData() + "\n";
+            while (current.getNext() != null) {
+                current = current.getNext();
+                listString += current.getData() + "\n";
+            }
+            return(listString);
+        } else {
+            return("There are no items in list.");
+        }
+    }
+
+}
+
+class Node2 {
+    public int data;
+    public Node2 next;
+
+    public Node2(int newData) {
+        data = newData;
+        next = null;
+    }
+
+    public Node2 getNext() {
+        return(next);
+    }
+
+    public void setNext(Node2 newNode) {
+        next = newNode;
+    }
+
+    public int getData() {
+        return(data);
+    }
+
+
+}
+
+public class LinkedListCode_int {
+
+    public static void main(String[] args) {
+        LinkedList2 list = new LinkedList2();
+
+        list.addAtFront(6);
+        list.addAtFront(5);
+        list.addAtFront(4);
+
+        System.out.println(list.toString());
+
+    }
+}
+
