@@ -1,0 +1,138 @@
+public class DoubleLinkedList {
+
+
+    public static void main(String[] args) {
+        LinkedLists list = new LinkedLists();
+
+        list.addAtFront("Sachar");
+        list.addAtFront("Osborne");
+        list.addAtFront("Suess");
+
+        System.out.println(list.displayRight());
+        System.out.println("Displaying left: ");
+        System.out.println(list.displayLeft());
+
+        System.out.println("Adding value");
+        list.addAtBack("back");
+        System.out.println(list.displayRight());
+
+
+    }
+}
+
+class LinkedLists
+{
+    private Nodes head;
+    private Nodes current;
+
+    public LinkedLists() {
+        head = null;
+        current = null;
+    }
+
+    public void addAtFront(String str) {
+        Nodes newNode = new Nodes(str);
+        newNode.setNext(head);
+        newNode.setPreviousNode(null);
+        if(head != null) {
+            head.setPreviousNode(newNode);
+        }
+        head = newNode;
+        current = newNode;
+    }
+
+    public void addAtBack(String str){
+
+    }
+
+
+
+    public void remove(String str) {
+        Nodes current = head;
+        Nodes previous = head;
+
+        if (current.getData().equals(str)) {
+            head = current.getNext();
+        } else {
+            while (current.getNext() != null) {
+                previous = current;
+                current = current.getNext();
+                if (current.getData().equals(str)) {
+                    previous.setNext(current.getNext());
+                }
+            }
+        }
+    }
+
+    public String displayRight() {
+        Nodes current = head;
+        String listString;
+
+        if (current != null) {
+            listString = current.getData() + "\n";
+            while (current.getNext() != null) {
+                current = current.getNext();
+                listString += current.getData() + "\n";
+            }
+            return(listString);
+        } else {
+            return("There are no items in list.");
+        }
+    }
+
+    public String displayLeft(){
+        Nodes temp = null;
+        Nodes current = head;
+        String listString = "";
+        while (current.getNext() != null) {
+            temp = current;
+            current = current.getNext();
+            System.out.println("Temp : "+temp.getData() + " : Current : " + current.getData());
+        }
+        listString = current.getData() + "\n";
+        while (temp.getPreviousNode() != null) {
+            listString += temp.getData() + "\n";
+            temp = temp.getPreviousNode();
+        }
+        listString += temp.getData() + "\n";
+
+        return(listString);
+
+    }
+
+
+}
+
+class Nodes {
+    public String data;
+    public Nodes next;
+    public Nodes previousNode;
+
+    public Nodes(String newData) {
+        data = newData;
+        next = null;
+        previousNode = null;
+    }
+
+    public Nodes getNext() {
+        return (next);
+    }
+
+    public void setNext(Nodes current) {
+        next = current;
+    }
+
+    public Nodes getPreviousNode(){
+        return previousNode;
+    }
+
+    public void setPreviousNode(Nodes current){
+        previousNode = current;
+    }
+
+
+    public String getData() {
+        return(data);
+    }
+}
+
