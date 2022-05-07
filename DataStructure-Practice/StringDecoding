@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class decodeString{
+    public static void main(String[] args) {
+        Stack<Character> stack = new Stack<>();
+
+        String message = "3[b2[ca]]";
+
+        for (int i = 0; i < message.length(); i++){
+            if (message.charAt(i) == '[' || message.charAt(i) == ']'){
+                //move on
+            }else{
+                stack.push(message.charAt(i));
+            }
+        }
+
+        String answer = "";
+        while (!stack.isEmpty()){
+            char element = stack.lastElement();
+            boolean aNumber = isNumber(stack.lastElement());
+            if (aNumber == true){
+                int number = Integer.parseInt(String.valueOf(element));
+                String value = answer;
+                answer = "";
+                for (int i = 0; i < number; i++){
+                    answer += value;
+                }
+            }else{
+                answer = element + answer;
+            }
+            stack.pop();
+        }
+
+        System.out.println(answer);
+
+
+
+
+    }
+
+    public static boolean isNumber(char element){
+        try{
+            Integer.parseInt(String.valueOf(element));
+            return true;
+        }catch (NumberFormatException e){
+            return false;
+        }
+    }
+}
